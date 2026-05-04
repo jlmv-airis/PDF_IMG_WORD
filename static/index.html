@@ -657,10 +657,11 @@
             pointer-events: none;
         }
         
-        .btn-secondary {
+        button.btn-secondary {
             appearance: none !important;
             -webkit-appearance: none !important;
-            background: var(--bg-card) !important;
+            -moz-appearance: none !important;
+            background: white !important;
             color: #7472ca !important;
             border: 2px solid #7472ca !important;
             border-radius: 12px !important;
@@ -671,14 +672,26 @@
             transition: all 0.2s ease;
             display: inline-block !important;
             text-decoration: none !important;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--bg-tertiary) !important;
-            border-color: #7472ca !important;
+            line-height: normal !important;
+            box-sizing: border-box !important;
         }
 
-        .btn-secondary:active {
+        .dark-mode button.btn-secondary {
+            background: #1e1e2e !important;
+            color: #7472ca !important;
+            border-color: #7472ca !important;
+        }
+        
+        button.btn-secondary:hover {
+            background: #f0f0f0 !important;
+            border-color: #635dc4 !important;
+        }
+
+        .dark-mode button.btn-secondary:hover {
+            background: #2a2a3e !important;
+        }
+
+        button.btn-secondary:active {
             transform: scale(0.98);
         }
         
@@ -1031,7 +1044,7 @@
             
             <!-- Action Buttons -->
             <div class="button-group">
-                <button class="btn-secondary" id="btnLimpiar">🧹 Limpiar</button>
+                <button class="btn-secondary" id="btnLimpiar" style="background:white;color:#7472ca;border:2px solid #7472ca;border-radius:12px;padding:16px 24px;font-size:16px;font-weight:600;">🧹 Limpiar</button>
                 <button class="btn-primary" id="processBtn">
                     <span style="display: flex; align-items: center; gap: 8px;">
                         🚀 INICIAR CONVERSIÓN
