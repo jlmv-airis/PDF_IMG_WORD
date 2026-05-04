@@ -1044,8 +1044,8 @@
             
             <!-- Action Buttons -->
             <div class="button-group">
-                <button class="btn-secondary" id="btnLimpiar" style="background:white;color:#7472ca;border:2px solid #7472ca;border-radius:12px;padding:16px 24px;font-size:16px;font-weight:600;">🧹 Limpiar</button>
-                <button class="btn-primary" id="processBtn">
+                <button class="btn-secondary" id="btnLimpiar" style="background:white;color:#7472ca;border:2px solid #7472ca;border-radius:12px;padding:16px 24px;font-size:16px;font-weight:600;cursor:pointer;">🧹 Limpiar</button>
+                <button class="btn-primary" id="processBtn" style="background:#7472ca;color:white;border:none;border-radius:12px;padding:18px 40px;font-size:16px;font-weight:700;cursor:pointer;">
                     <span style="display: flex; align-items: center; gap: 8px;">
                         🚀 INICIAR CONVERSIÓN
                         <svg fill="currentColor" viewBox="0 0 24 24" style="width: 20px; height: 20px;">
@@ -1355,7 +1355,7 @@
             
             processBtn.disabled = true;
             processBtn.classList.add('loading');
-            processBtn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;">⏳ Procesando...</span>';
+            processBtn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;background:#7472ca;color:white;padding:18px 40px;border-radius:12px;font-size:16px;font-weight:700;">⏳ Procesando...</span>';
             floatingProgress.classList.add('show');
             document.getElementById('modalBackdrop').classList.add('show');
             progressBar.style.width = '10%';
@@ -1426,7 +1426,7 @@
 
             processBtn.disabled = false;
             processBtn.classList.remove('loading');
-            processBtn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;">🚀 INICIAR CONVERSIÓN <svg fill="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M8 5v14l11-7z"></path></svg></span>';
+            processBtn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;background:#7472ca;color:white;padding:18px 40px;border-radius:12px;font-size:16px;font-weight:700;">🚀 INICIAR CONVERSIÓN</span>';
         });
 
         // Prevent browser default drag behavior
