@@ -678,16 +678,18 @@
         .floating-progress {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 60px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%) !important;
+            -webkit-transform: translateX(-50%) !important;
             z-index: 1001;
             background: var(--bg-card);
             padding: 32px;
             padding-top: 45px;
             border-radius: 16px;
             box-shadow: 0 10px 25px var(--shadow);
-            min-width: 350px;
+            width: 90%;
+            max-width: 380px;
             text-align: center;
             transition: background 0.3s ease;
         }
