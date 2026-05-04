@@ -98,24 +98,52 @@
         .theme-toggle {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 14px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .theme-toggle span {
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
 
         .theme-toggle .toggle-switch {
-            width: 44px;
-            height: 24px;
+            width: 50px;
+            height: 26px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
         .theme-toggle .toggle-switch .toggle-dot {
             width: 20px;
             height: 20px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle .toggle-switch.active {
+            background: var(--primary);
+            border-color: var(--primary);
         }
 
         .theme-toggle .toggle-switch.active .toggle-dot {
-            transform: translateX(20px);
+            transform: translateX(24px);
+        }
+
+        .theme-toggle-label {
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
         }
         
         .main-wrapper {
@@ -901,9 +929,10 @@
     <!-- Header -->
     <div class="header">
         <div class="header-controls">
-            <div class="theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()" title="Cambiar modo oscuro">
                 <span id="themeIcon">🌙</span>
-                <div class="toggle-switch" id="darkModeToggle" onclick="toggleTheme()">
+                <span class="theme-toggle-label">Modo</span>
+                <div class="toggle-switch" id="darkModeToggle">
                     <div class="toggle-dot"></div>
                 </div>
             </div>
