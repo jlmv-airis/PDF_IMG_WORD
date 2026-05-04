@@ -675,11 +675,11 @@
         }
         
         /* Floating Progress */
-        .floating-progress {
+        .floating-progress, .success-modal {
             display: none;
             position: fixed;
-            top: 60px;
-            left: 50%;
+            top: 60px !important;
+            left: 50% !important;
             transform: translateX(-50%) !important;
             -webkit-transform: translateX(-50%) !important;
             z-index: 1001;
@@ -692,6 +692,11 @@
             max-width: 380px;
             text-align: center;
             transition: background 0.3s ease;
+        }
+
+        /* Also force min-width for both */
+        #floatingProgress, #successModal {
+            min-width: 320px;
         }
 
         .floating-progress.show {
