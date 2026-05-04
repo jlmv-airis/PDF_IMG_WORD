@@ -1029,16 +1029,13 @@
                         floatingProgress.classList.remove('show');
                         successModal.classList.add('show');
                         
-                        let downloadUrl = '';
-                        if (data.has_zip) {
-                            downloadUrl = '/download/' + task_id + '/Imagenes_completo.zip';
-                        } else {
-                            downloadUrl = '/download/' + task_id + '/Imagenes.docx';
-                        }
+                        // Usar el nombre de archivo que devuelve el backend
+                        const filename = data.filename || 'Imagenes.docx';
+                        const downloadUrl = '/download/' + task_id + '/' + filename;
                         
                         // Descarga automática
                         downloadLink.href = downloadUrl;
-                        downloadLink.download = downloadUrl.split('/').pop();
+                        downloadLink.download = filename;
                         manualLink.href = downloadUrl;
                         
                         // Activar descarga automática

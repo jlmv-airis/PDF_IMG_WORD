@@ -34,3 +34,19 @@ dist/
 
 # OS
 Thumbs.db
+
+# Build artifacts
+*.zip
+*.exe
+AIRIS_SUITE_v1.0/
+AIRIS_SUITE_v2.0/
+AIRIS_V1.0/
+AIRIS_V3/
+AIRIS_DISTRIB_FINAL/
+AIRIS_SUITE_v1.0_FINAL/
+ARIIS_SUITE.spec
+AIRIS_Converter.spec
+INICIAR_AIRIS_v1.bat
+cloudflared.exe
+ngrok.exe
+ngrok.zip
