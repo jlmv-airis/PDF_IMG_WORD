@@ -1365,10 +1365,12 @@
                         setTimeout(function() {
                             downloadLink.click();
                         }, 500);
-                        
-                        setTimeout(function() {
+
+                        // El modal se cierra al hacer clic en descargar
+                        document.getElementById('successModal').addEventListener('click', function closeModal() {
                             successModal.classList.remove('show');
-                        }, 5000);
+                            document.getElementById('successModal').removeEventListener('click', closeModal);
+                        });
                     }, 500);
                 }
             } catch (e) {
