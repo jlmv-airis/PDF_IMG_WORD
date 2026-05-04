@@ -45,7 +45,7 @@ AIRIS_V3/
 AIRIS_DISTRIB_FINAL/
 AIRIS_SUITE_v1.0_FINAL/
 ARIIS_SUITE.spec
-AIRIS_Converter.spec
+# AIRIS_Converter.spec
 INICIAR_AIRIS_v1.bat
 cloudflared.exe
 ngrok.exe
