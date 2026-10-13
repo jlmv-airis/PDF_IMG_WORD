@@ -19,7 +19,7 @@ HAS_WORD = False
 WORD_ERROR = ""
 try:
     from docx import Document
-    from docx.shared import Inches
+    from docx.shared import Inches, Pt
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.enum.section import WD_ORIENT
     HAS_WORD = True
@@ -32,6 +32,11 @@ except Exception as e:
 # INTERFAZ DE USUARIO (GUI)
 # =================================================================
 from worker import convert_page_worker
+
+import re
+def natural_key(path):
+    # Orden natural: "_p2" antes que "_p10"
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\d+)', path)]
 
 class AIRISConverter(ctk.CTk, TkinterDnD.DnDWrapper):
     def __init__(self):
@@ -368,7 +373,7 @@ class AIRISConverter(ctk.CTk, TkinterDnD.DnDWrapper):
 
     def _process_word_generation_from_list(self, img_list, save_dir):
         try:
-            img_list.sort()
+            img_list.sort(key=natural_key)
             doc = Document()
             total = len(img_list)
             for i, img_path in enumerate(img_list):
@@ -382,18 +387,22 @@ class AIRISConverter(ctk.CTk, TkinterDnD.DnDWrapper):
                 
                 section.orientation = WD_ORIENT.PORTRAIT
                 section.page_width = Inches(8.5); section.page_height = Inches(11)
-                available_w = 7.5; available_h = 10.0
+                # Mismo cálculo que backend/app.py: bloque de 9.5" centrado, margen inferior fijo
+                MARGIN_V = 0.75; BOX_H = 9.5; MAX_H = 9.0
                 
                 img_w_in = w_px / 96; img_h_in = h_px / 96
-                scale = 1.0
-                if img_w_in > available_w: scale = min(scale, available_h / img_h_in, available_w / img_w_in)
+                scale = min(1.0, 7.5 / img_w_in, MAX_H / img_h_in)
                 
                 final_w = img_w_in * scale; final_h = img_h_in * scale
-                section.top_margin = Inches((11.0 - final_h) / 2)
+                section.top_margin = Inches(MARGIN_V + (BOX_H - final_h) / 2)
+                section.bottom_margin = Inches(MARGIN_V)
                 section.left_margin = section.right_margin = Inches(0.5)
                 
                 p = doc.add_paragraph()
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.line_spacing = 1.0
+                p.paragraph_format.space_before = Pt(0)
+                p.paragraph_format.space_after = Pt(0)
                 run = p.add_run()
                 run.add_picture(img_path, width=Inches(final_w))
             
@@ -503,7 +512,7 @@ class AIRISConverter(ctk.CTk, TkinterDnD.DnDWrapper):
         try:
             valid_exts = ('.jpg', '.jpeg', '.png')
             images = [os.path.join(img_dir, f) for f in os.listdir(img_dir) if f.lower().endswith(valid_exts)]
-            images.sort()
+            images.sort(key=natural_key)
             if not images: return
 
             doc = Document()
@@ -517,18 +526,22 @@ class AIRISConverter(ctk.CTk, TkinterDnD.DnDWrapper):
                 
                 section.orientation = WD_ORIENT.PORTRAIT
                 section.page_width = Inches(8.5); section.page_height = Inches(11)
-                available_w = 7.5; available_h = 10.0
+                # Mismo cálculo que backend/app.py: bloque de 9.5" centrado, margen inferior fijo
+                MARGIN_V = 0.75; BOX_H = 9.5; MAX_H = 9.0
                 
                 img_w_in = w_px / 96; img_h_in = h_px / 96
-                scale = 1.0
-                if img_w_in > available_w: scale = min(scale, available_h / img_h_in, available_w / img_w_in)
+                scale = min(1.0, 7.5 / img_w_in, MAX_H / img_h_in)
                 
                 final_w = img_w_in * scale; final_h = img_h_in * scale
-                section.top_margin = Inches((11.0 - final_h) / 2)
+                section.top_margin = Inches(MARGIN_V + (BOX_H - final_h) / 2)
+                section.bottom_margin = Inches(MARGIN_V)
                 section.left_margin = section.right_margin = Inches(0.5)
                 
                 p = doc.add_paragraph()
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.line_spacing = 1.0
+                p.paragraph_format.space_before = Pt(0)
+                p.paragraph_format.space_after = Pt(0)
                 run = p.add_run()
                 run.add_picture(img_path, width=Inches(final_w))
             

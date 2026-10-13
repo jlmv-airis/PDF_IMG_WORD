@@ -133,17 +133,21 @@ python desktop-app/AIRIS_Converter.py
 ```
 PDF_IMG_WORD/
 ├── backend/
-│   ├── app.py              # Servidor Flask principal
-│   ├── uploads/            # Archivos subidos temporalmente
-│   └── outputs/            # Archivos generados temporalmente
+│   ├── app.py              # Servidor Flask (rutas)
+│   ├── pdf_renderer.py     # PDF → JPEG
+│   ├── word_builder.py     # Imágenes → Word
+│   ├── uploads/            # Archivos subidos temporalmente (se crea al ejecutar)
+│   └── outputs/            # Archivos generados temporalmente (se crea al ejecutar)
 ├── static/
-│   ├── index.html         # Interfaz web
-│   └── images.jpg         # Logo
+│   ├── index.html          # Interfaz web
+│   └── images.jpg          # Logo
 ├── desktop-app/
-│   ├── AIRIS_Converter.py # App de escritorio
-│   └── worker.py          # Worker para procesamiento
-├── requirements.txt       # Dependencias de Python
-└── README.md             # Este archivo
+│   ├── AIRIS_Converter.py  # App de escritorio
+│   └── worker.py           # Worker para procesamiento
+├── Shared_Project/         # Instrucciones de uso
+├── requirements.txt        # Dependencias de Python
+├── CLAUDE.md               # Guía técnica para asistentes de código
+└── README.md               # Este archivo
 ```
 
 ---
